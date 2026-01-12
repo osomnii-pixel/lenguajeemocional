@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///C:/Users/Usuar/OneDrive/Documentos/testle.index.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Test de Perfil de Comportamiento (40 puntos)</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#121823;
+      --card2:#0f1520;
+      --text:#e8eef7;
+      --muted:#a7b3c6;
+      --line:#223044;
+      --btn:#1f7ae0;
+      --btn2:#1a5fb0;
+
+      --rojo:#F08080;     /* coral claro */
+      --amarillo:#FFF2A8; /* amarillo pastel */
+      --verde:#B2F5E9;    /* menta pastel */
+      --azul:#ADD8E6;     /* azul bebé */
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 20% -10%, #1a2a44 0%, var(--bg) 55%);
+      color:var(--text);
+      line-height:1.45;
+    }
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 14px 60px;
+    }
+    .header{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 16px;
+      margin-bottom: 14px;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size: 22px;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size: 14px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .meta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      background: rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      background: linear-gradient(180deg, var(--btn), var(--btn2));
+      color:white;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor:pointer;
+      transition: transform .06s ease, opacity .15s ease;
+    }
+    .btn:active{ transform: translateY(1px) }
+    .btn.secondary{
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .q{
+      background: rgba(0,0,0,.18);
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .q.missing{
+      border-color: rgba(255,120,120,.65);
+      box-shadow: 0 0 0 2px rgba(255,120,120,.12) inset;
+    }
+    .qhead{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      justify-content:space-between;
+      margin-bottom: 8px;
+    }
+    .qnum{
+      font-weight: 800;
+      color: #d7e2f6;
+      min-width: 34px;
+    }
+    .qtitle{
+      margin:0;
+      font-size: 15px;
+      color: #eaf1ff;
+      flex: 1;
+    }
+
+    .opts{
+      display:grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    label.opt{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
+    }
+    label.opt:hover{
+      border-color: rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+    }
+    input[type="radio"]{
+      margin-top: 2px;
+      transform: scale(1.05);
+      accent-color: #7fb8ff;
+    }
+    .opt span{
+      display:block;
+      color: #e8eef7;
+      font-size: 14px;
+    }
+    .muted{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .results{
+      display:none;
+      margin-top: 14px;
+    }
+    .resultHeader{
+      border-radius: 16px;
+      padding: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .dominant{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .dominant h2{
+      margin:0;
+      font-size: 20px;
+      letter-spacing:.2px;
+    }
+    .dominant .tag{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.12);
+      font-weight: 800;
+    }
+    .swatch{
+      width: 16px;
+      height: 16px;
+      border-radius: 6px;
+      border:1px solid rgba(0,0,0,.2);
+    }
+
+    .resGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (min-width: 900px){
+      .resGrid{ grid-template-columns: 360px 1fr; }
+    }
+
+    canvas{
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      background: rgba(0,0,0,.18);
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px;
+    }
+
+    .bars{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .barRow{
+      display:grid;
+      grid-template-columns: 90px 1fr 60px;
+      gap: 10px;
+      align-items:center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .bar{
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .bar > div{
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+    }
+
+    .detail h3{
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+    .detail ul{
+      margin: 8px 0 10px 18px;
+      padding: 0;
+    }
+    .detail li{
+      margin: 6px 0;
+    }
+    .detail p{
+      margin: 8px 0;
+      color: #e8eef7;
+    }
+    .detail p b{
+      color: #ffffff;
+    }
+
+    .footerActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      margin-top: 12px;
+    }
+    .tiny{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <h1>TEST DE PERFIL DE COMPORTAMIENTO (40 PUNTOS)</h1>
+      <p class="sub">
+        Selecciona la frase o concepto con el que <b>más te identificas en el presente</b> en cada punto.
+        Elige <b>solo una opción</b> por pregunta.
+      </p>
+      <div class="meta-row" style="margin-top:10px;">
+        <div class="pill" id="progressPill">Progreso: 0 / 40</div>
+        <button class="btn secondary" id="btnReset" type="button">Reiniciar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="grid" id="questions"><div class="q" id="q_0"><div class="qhead"><div class="qnum">1.</div><p class="qtitle">Cuando tengo un objetivo importante, me enfoco en:</p></div><div class="opts"><label class="opt" for="q0_o0"><input type="radio" name="q0" id="q0_o0" value="rojo"><span>Que sea ameno y contagiar entusiasmo al equipo.</span></label><label class="opt" for="q0_o1"><input type="radio" name="q0" id="q0_o1" value="amarillo"><span>Resultados tangibles y control de la situación.</span></label><label class="opt" for="q0_o2"><input type="radio" name="q0" id="q0_o2" value="azul"><span>Estabilidad, claridad y que todo sea predecible.</span></label><label class="opt" for="q0_o3"><input type="radio" name="q0" id="q0_o3" value="verde"><span>Precisión, método y hacerlo impecable.</span></label></div></div><div class="q" id="q_1"><div class="qhead"><div class="qnum">2.</div><p class="qtitle">Cuando hay presión, mi reacción más común es:</p></div><div class="opts"><label class="opt" for="q1_o0"><input type="radio" name="q1" id="q1_o0" value="amarillo"><span>Acelerar decisiones y empujar para cerrar.</span></label><label class="opt" for="q1_o1"><input type="radio" name="q1" id="q1_o1" value="azul"><span>Buscar calma, bajar tensión y cuidar el clima.</span></label><label class="opt" for="q1_o2"><input type="radio" name="q1" id="q1_o2" value="verde"><span>Revisar datos, detectar errores y ordenar pasos.</span></label><label class="opt" for="q1_o3"><input type="radio" name="q1" id="q1_o3" value="rojo"><span>Aligerar el ambiente y mantener el ánimo arriba.</span></label></div></div><div class="q" id="q_2"><div class="qhead"><div class="qnum">3.</div><p class="qtitle">En una conversación difícil, suelo:</p></div><div class="opts"><label class="opt" for="q2_o0"><input type="radio" name="q2" id="q2_o0" value="verde"><span>Pedir precisión y sustento antes de concluir.</span></label><label class="opt" for="q2_o1"><input type="radio" name="q2" id="q2_o1" value="rojo"><span>Usar humor y empatía para que fluya.</span></label><label class="opt" for="q2_o2"><input type="radio" name="q2" id="q2_o2" value="azul"><span>Medir palabras, escuchar y evitar choque.</span></label><label class="opt" for="q2_o3"><input type="radio" name="q2" id="q2_o3" value="amarillo"><span>Decirlo directo y resolver rápido.</span></label></div></div><div class="q" id="q_3"><div class="qhead"><div class="qnum">4.</div><p class="qtitle">Lo que más valoro de un plan es que sea:</p></div><div class="opts"><label class="opt" for="q3_o0"><input type="radio" name="q3" id="q3_o0" value="azul"><span>Estable, claro y sin sobresaltos.</span></label><label class="opt" for="q3_o1"><input type="radio" name="q3" id="q3_o1" value="verde"><span>Detallado, lógico y con riesgos previstos.</span></label><label class="opt" for="q3_o2"><input type="radio" name="q3" id="q3_o2" value="amarillo"><span>Rápido, efectivo y orientado a ganar.</span></label><label class="opt" for="q3_o3"><input type="radio" name="q3" id="q3_o3" value="rojo"><span>Inspirador y con espacio para improvisar.</span></label></div></div><div class="q" id="q_4"><div class="qhead"><div class="qnum">5.</div><p class="qtitle">Si alguien me da retroalimentación, prefiero que sea:</p></div><div class="opts"><label class="opt" for="q4_o0"><input type="radio" name="q4" id="q4_o0" value="azul"><span>Cuidadosa, respetuosa y en privado.</span></label><label class="opt" for="q4_o1"><input type="radio" name="q4" id="q4_o1" value="verde"><span>Específica, basada en hechos y ejemplos.</span></label><label class="opt" for="q4_o2"><input type="radio" name="q4" id="q4_o2" value="amarillo"><span>Concreta, directa y al punto.</span></label><label class="opt" for="q4_o3"><input type="radio" name="q4" id="q4_o3" value="rojo"><span>Amable, motivadora y con buena vibra.</span></label></div></div><div class="q" id="q_5"><div class="qhead"><div class="qnum">6.</div><p class="qtitle">Cuando empiezo algo nuevo, lo que más me impulsa es:</p></div><div class="opts"><label class="opt" for="q5_o0"><input type="radio" name="q5" id="q5_o0" value="amarillo"><span>El reto, la meta y el logro.</span></label><label class="opt" for="q5_o1"><input type="radio" name="q5" id="q5_o1" value="rojo"><span>La emoción, la novedad y compartirlo.</span></label><label class="opt" for="q5_o2"><input type="radio" name="q5" id="q5_o2" value="azul"><span>Sentirme seguro/a y con respaldo.</span></label><label class="opt" for="q5_o3"><input type="radio" name="q5" id="q5_o3" value="verde"><span>Entenderlo a fondo y dominarlo.</span></label></div></div><div class="q" id="q_6"><div class="qhead"><div class="qnum">7.</div><p class="qtitle">En equipo, tiendo a aportar más con:</p></div><div class="opts"><label class="opt" for="q6_o0"><input type="radio" name="q6" id="q6_o0" value="verde"><span>Estructura, calidad y prevención de errores.</span></label><label class="opt" for="q6_o1"><input type="radio" name="q6" id="q6_o1" value="rojo"><span>Ideas, energía y conexión entre personas.</span></label><label class="opt" for="q6_o2"><input type="radio" name="q6" id="q6_o2" value="amarillo"><span>Dirección, decisión y sentido de urgencia.</span></label><label class="opt" for="q6_o3"><input type="radio" name="q6" id="q6_o3" value="azul"><span>Constancia, seguimiento y equilibrio emocional.</span></label></div></div><div class="q" id="q_7"><div class="qhead"><div class="qnum">8.</div><p class="qtitle">Si algo sale mal, mi prioridad suele ser:</p></div><div class="opts"><label class="opt" for="q7_o0"><input type="radio" name="q7" id="q7_o0" value="amarillo"><span>Reaccionar y corregir YA.</span></label><label class="opt" for="q7_o1"><input type="radio" name="q7" id="q7_o1" value="verde"><span>Encontrar la causa exacta y ajustar el sistema.</span></label><label class="opt" for="q7_o2"><input type="radio" name="q7" id="q7_o2" value="azul"><span>Reducir el impacto y volver a un estado estable.</span></label><label class="opt" for="q7_o3"><input type="radio" name="q7" id="q7_o3" value="rojo"><span>Que la gente no se desanime.</span></label></div></div><div class="q" id="q_8"><div class="qhead"><div class="qnum">9.</div><p class="qtitle">Cuando hay reglas, normalmente yo:</p></div><div class="opts"><label class="opt" for="q8_o0"><input type="radio" name="q8" id="q8_o0" value="azul"><span>Las agradezco porque dan certeza.</span></label><label class="opt" for="q8_o1"><input type="radio" name="q8" id="q8_o1" value="verde"><span>Las respeto y las optimizo con disciplina.</span></label><label class="opt" for="q8_o2"><input type="radio" name="q8" id="q8_o2" value="amarillo"><span>Las uso si ayudan a ganar; si no, las cuestiono.</span></label><label class="opt" for="q8_o3"><input type="radio" name="q8" id="q8_o3" value="rojo"><span>Las sigo si no matan el flow.</span></label></div></div><div class="q" id="q_9"><div class="qhead"><div class="qnum">10.</div><p class="qtitle">Si me dan una tarea, lo que más me ayuda es:</p></div><div class="opts"><label class="opt" for="q9_o0"><input type="radio" name="q9" id="q9_o0" value="azul"><span>Acompañamiento, contexto y estabilidad.</span></label><label class="opt" for="q9_o1"><input type="radio" name="q9" id="q9_o1" value="amarillo"><span>Objetivo claro y autoridad para ejecutar.</span></label><label class="opt" for="q9_o2"><input type="radio" name="q9" id="q9_o2" value="verde"><span>Instrucciones precisas, tiempos y criterios.</span></label><label class="opt" for="q9_o3"><input type="radio" name="q9" id="q9_o3" value="rojo"><span>Libertad creativa y un ambiente ligero.</span></label></div></div><div class="q" id="q_10"><div class="qhead"><div class="qnum">11.</div><p class="qtitle">Si una junta se alarga, yo empiezo a:</p></div><div class="opts"><label class="opt" for="q10_o0"><input type="radio" name="q10" id="q10_o0" value="verde"><span>Pedir agenda, orden y acuerdos por escrito.</span></label><label class="opt" for="q10_o1"><input type="radio" name="q10" id="q10_o1" value="rojo"><span>Contar anécdotas o meter dinamismo.</span></label><label class="opt" for="q10_o2"><input type="radio" name="q10" id="q10_o2" value="azul"><span>Escuchar, pero me canso si hay conflicto.</span></label><label class="opt" for="q10_o3"><input type="radio" name="q10" id="q10_o3" value="amarillo"><span>Cortar y exigir decisión.</span></label></div></div><div class="q" id="q_11"><div class="qhead"><div class="qnum">12.</div><p class="qtitle">Ante un cambio inesperado, mi primer impulso es:</p></div><div class="opts"><label class="opt" for="q11_o0"><input type="radio" name="q11" id="q11_o0" value="rojo"><span>Ver el lado divertido y adaptarme con energía.</span></label><label class="opt" for="q11_o1"><input type="radio" name="q11" id="q11_o1" value="verde"><span>Evaluar riesgos y reordenar el proceso.</span></label><label class="opt" for="q11_o2"><input type="radio" name="q11" id="q11_o2" value="azul"><span>Buscar estabilidad y tiempo para procesarlo.</span></label><label class="opt" for="q11_o3"><input type="radio" name="q11" id="q11_o3" value="amarillo"><span>Tomar control y convertirlo en ventaja.</span></label></div></div><div class="q" id="q_12"><div class="qhead"><div class="qnum">13.</div><p class="qtitle">Cuando alguien me pide algo “rápido”, normalmente:</p></div><div class="opts"><label class="opt" for="q12_o0"><input type="radio" name="q12" id="q12_o0" value="rojo"><span>Digo que sí, aunque luego improvise.</span></label><label class="opt" for="q12_o1"><input type="radio" name="q12" id="q12_o1" value="verde"><span>Pregunto detalles antes de comprometerme.</span></label><label class="opt" for="q12_o2"><input type="radio" name="q12" id="q12_o2" value="azul"><span>Me estreso si no está claro y necesito calma.</span></label><label class="opt" for="q12_o3"><input type="radio" name="q12" id="q12_o3" value="amarillo"><span>Lo hago al instante y sigo con lo siguiente.</span></label></div></div><div class="q" id="q_13"><div class="qhead"><div class="qnum">14.</div><p class="qtitle">En una negociación, suelo:</p></div><div class="opts"><label class="opt" for="q13_o0"><input type="radio" name="q13" id="q13_o0" value="amarillo"><span>Apretar por el mejor resultado.</span></label><label class="opt" for="q13_o1"><input type="radio" name="q13" id="q13_o1" value="azul"><span>Buscar acuerdos justos y sin tensión.</span></label><label class="opt" for="q13_o2"><input type="radio" name="q13" id="q13_o2" value="rojo"><span>Conectar y persuadir con carisma.</span></label><label class="opt" for="q13_o3"><input type="radio" name="q13" id="q13_o3" value="verde"><span>Sostenerme en datos y términos claros.</span></label></div></div><div class="q" id="q_14"><div class="qhead"><div class="qnum">15.</div><p class="qtitle">Cuando algo se vuelve rutinario, yo:</p></div><div class="opts"><label class="opt" for="q14_o0"><input type="radio" name="q14" id="q14_o0" value="azul"><span>Me siento tranquilo/a: estabilidad es buena.</span></label><label class="opt" for="q14_o1"><input type="radio" name="q14" id="q14_o1" value="verde"><span>Lo perfecciono y lo vuelvo sistema.</span></label><label class="opt" for="q14_o2"><input type="radio" name="q14" id="q14_o2" value="amarillo"><span>Lo automatizo o lo delego para avanzar.</span></label><label class="opt" for="q14_o3"><input type="radio" name="q14" id="q14_o3" value="rojo"><span>Me aburro y necesito variedad.</span></label></div></div><div class="q" id="q_15"><div class="qhead"><div class="qnum">16.</div><p class="qtitle">Mi forma natural de aprender es:</p></div><div class="opts"><label class="opt" for="q15_o0"><input type="radio" name="q15" id="q15_o0" value="verde"><span>Estudiando a fondo, paso por paso.</span></label><label class="opt" for="q15_o1"><input type="radio" name="q15" id="q15_o1" value="amarillo"><span>Yendo al grano y practicando para dominar rápido.</span></label><label class="opt" for="q15_o2"><input type="radio" name="q15" id="q15_o2" value="azul"><span>Con calma, repetición y un entorno seguro.</span></label><label class="opt" for="q15_o3"><input type="radio" name="q15" id="q15_o3" value="rojo"><span>Probando, hablando y moviéndome.</span></label></div></div><div class="q" id="q_16"><div class="qhead"><div class="qnum">17.</div><p class="qtitle">Cuando alguien es muy lento para decidir, yo:</p></div><div class="opts"><label class="opt" for="q16_o0"><input type="radio" name="q16" id="q16_o0" value="azul"><span>Lo comprendo: decidir bien toma tiempo.</span></label><label class="opt" for="q16_o1"><input type="radio" name="q16" id="q16_o1" value="verde"><span>Entiendo si está analizando, pero pido orden.</span></label><label class="opt" for="q16_o2"><input type="radio" name="q16" id="q16_o2" value="amarillo"><span>Me impaciento y empujo a decidir.</span></label><label class="opt" for="q16_o3"><input type="radio" name="q16" id="q16_o3" value="rojo"><span>Lo animo y le doy confianza.</span></label></div></div><div class="q" id="q_17"><div class="qhead"><div class="qnum">18.</div><p class="qtitle">Cuando alguien es muy impulsivo, yo:</p></div><div class="opts"><label class="opt" for="q17_o0"><input type="radio" name="q17" id="q17_o0" value="verde"><span>Lo freno con datos, proceso y cautela.</span></label><label class="opt" for="q17_o1"><input type="radio" name="q17" id="q17_o1" value="azul"><span>Me incomoda y prefiero distancia.</span></label><label class="opt" for="q17_o2"><input type="radio" name="q17" id="q17_o2" value="rojo"><span>Me río, pero intento bajarlo a tierra.</span></label><label class="opt" for="q17_o3"><input type="radio" name="q17" id="q17_o3" value="amarillo"><span>Lo uso como energía para avanzar.</span></label></div></div><div class="q" id="q_18"><div class="qhead"><div class="qnum">19.</div><p class="qtitle">En un conflicto, mi tendencia es:</p></div><div class="opts"><label class="opt" for="q18_o0"><input type="radio" name="q18" id="q18_o0" value="rojo"><span>Evitar tensión con humor y cercanía.</span></label><label class="opt" for="q18_o1"><input type="radio" name="q18" id="q18_o1" value="verde"><span>Analizar quién tiene razón con evidencia.</span></label><label class="opt" for="q18_o2"><input type="radio" name="q18" id="q18_o2" value="amarillo"><span>Enfrentar y resolver rápido.</span></label><label class="opt" for="q18_o3"><input type="radio" name="q18" id="q18_o3" value="azul"><span>Evitar confrontación y buscar paz.</span></label></div></div><div class="q" id="q_19"><div class="qhead"><div class="qnum">20.</div><p class="qtitle">Si tengo que liderar, normalmente lidero con:</p></div><div class="opts"><label class="opt" for="q19_o0"><input type="radio" name="q19" id="q19_o0" value="rojo"><span>Energía, motivación y convivencia.</span></label><label class="opt" for="q19_o1"><input type="radio" name="q19" id="q19_o1" value="verde"><span>Procesos, calidad y planificación.</span></label><label class="opt" for="q19_o2"><input type="radio" name="q19" id="q19_o2" value="azul"><span>Cuidado, armonía y estabilidad.</span></label><label class="opt" for="q19_o3"><input type="radio" name="q19" id="q19_o3" value="amarillo"><span>Dirección, decisión y presión por metas.</span></label></div></div><div class="q" id="q_20"><div class="qhead"><div class="qnum">21.</div><p class="qtitle">Cuando alguien me pide “instrucciones”, suelo:</p></div><div class="opts"><label class="opt" for="q20_o0"><input type="radio" name="q20" id="q20_o0" value="azul"><span>Acompañar con paciencia y tranquilidad.</span></label><label class="opt" for="q20_o1"><input type="radio" name="q20" id="q20_o1" value="verde"><span>Detallar, documentar y verificar comprensión.</span></label><label class="opt" for="q20_o2"><input type="radio" name="q20" id="q20_o2" value="rojo"><span>Explicar con ejemplos y anécdotas.</span></label><label class="opt" for="q20_o3"><input type="radio" name="q20" id="q20_o3" value="amarillo"><span>Dar pasos concretos y ya.</span></label></div></div><div class="q" id="q_21"><div class="qhead"><div class="qnum">22.</div><p class="qtitle">Para mí, un día productivo se siente como:</p></div><div class="opts"><label class="opt" for="q21_o0"><input type="radio" name="q21" id="q21_o0" value="verde"><span>Todo quedó bien hecho y sin errores.</span></label><label class="opt" for="q21_o1"><input type="radio" name="q21" id="q21_o1" value="rojo"><span>Me divertí, conecté y avancé algo.</span></label><label class="opt" for="q21_o2"><input type="radio" name="q21" id="q21_o2" value="azul"><span>Fue estable, sin estrés y con orden.</span></label><label class="opt" for="q21_o3"><input type="radio" name="q21" id="q21_o3" value="amarillo"><span>Logré metas y gané terreno.</span></label></div></div><div class="q" id="q_22"><div class="qhead"><div class="qnum">23.</div><p class="qtitle">Cuando se trata de detalles, yo:</p></div><div class="opts"><label class="opt" for="q22_o0"><input type="radio" name="q22" id="q22_o0" value="verde"><span>Me fijo en todo: precisión y consistencia.</span></label><label class="opt" for="q22_o1"><input type="radio" name="q22" id="q22_o1" value="amarillo"><span>Me fijo en lo que impacta el resultado.</span></label><label class="opt" for="q22_o2"><input type="radio" name="q22" id="q22_o2" value="rojo"><span>Me fijo en lo general y en la vibra.</span></label><label class="opt" for="q22_o3"><input type="radio" name="q22" id="q22_o3" value="azul"><span>Me fijo en que sea claro y cómodo.</span></label></div></div><div class="q" id="q_23"><div class="qhead"><div class="qnum">24.</div><p class="qtitle">En una presentación, mi estilo natural es:</p></div><div class="opts"><label class="opt" for="q23_o0"><input type="radio" name="q23" id="q23_o0" value="rojo"><span>Expresivo, divertido y con storytelling.</span></label><label class="opt" for="q23_o1"><input type="radio" name="q23" id="q23_o1" value="azul"><span>Tranquilo, cuidadoso y empático.</span></label><label class="opt" for="q23_o2"><input type="radio" name="q23" id="q23_o2" value="amarillo"><span>Directo, convincente y con cierre fuerte.</span></label><label class="opt" for="q23_o3"><input type="radio" name="q23" id="q23_o3" value="verde"><span>Ordenado, técnico y con sustento.</span></label></div></div><div class="q" id="q_24"><div class="qhead"><div class="qnum">25.</div><p class="qtitle">Cuando tengo muchas ideas, lo que más me cuesta es:</p></div><div class="opts"><label class="opt" for="q24_o0"><input type="radio" name="q24" id="q24_o0" value="amarillo"><span>Esperar: quiero resultados ya.</span></label><label class="opt" for="q24_o1"><input type="radio" name="q24" id="q24_o1" value="verde"><span>Soltar el control y aceptar imperfección.</span></label><label class="opt" for="q24_o2"><input type="radio" name="q24" id="q24_o2" value="rojo"><span>Elegir solo una y terminarla.</span></label><label class="opt" for="q24_o3"><input type="radio" name="q24" id="q24_o3" value="azul"><span>Moverme rápido con cambios.</span></label></div></div><div class="q" id="q_25"><div class="qhead"><div class="qnum">26.</div><p class="qtitle">Si alguien no está comprometido, yo:</p></div><div class="opts"><label class="opt" for="q25_o0"><input type="radio" name="q25" id="q25_o0" value="rojo"><span>Lo motivo y trato de inspirarlo.</span></label><label class="opt" for="q25_o1"><input type="radio" name="q25" id="q25_o1" value="azul"><span>Busco dialogar sin tensión y entender.</span></label><label class="opt" for="q25_o2"><input type="radio" name="q25" id="q25_o2" value="verde"><span>Documentaría fallas y ajustaría el proceso.</span></label><label class="opt" for="q25_o3"><input type="radio" name="q25" id="q25_o3" value="amarillo"><span>Lo confronto y exijo desempeño.</span></label></div></div><div class="q" id="q_26"><div class="qhead"><div class="qnum">27.</div><p class="qtitle">Cuando se trata de riesgos, normalmente:</p></div><div class="opts"><label class="opt" for="q26_o0"><input type="radio" name="q26" id="q26_o0" value="amarillo"><span>Me aviento si aumenta la probabilidad de ganar.</span></label><label class="opt" for="q26_o1"><input type="radio" name="q26" id="q26_o1" value="verde"><span>Evalúo riesgos antes: no apuesto a ciegas.</span></label><label class="opt" for="q26_o2"><input type="radio" name="q26" id="q26_o2" value="rojo"><span>Me aviento si suena emocionante.</span></label><label class="opt" for="q26_o3"><input type="radio" name="q26" id="q26_o3" value="azul"><span>Prefiero lo seguro: me pesa la incertidumbre.</span></label></div></div><div class="q" id="q_27"><div class="qhead"><div class="qnum">28.</div><p class="qtitle">Si un proyecto va lento, lo más típico en mí es:</p></div><div class="opts"><label class="opt" for="q27_o0"><input type="radio" name="q27" id="q27_o0" value="verde"><span>Revisar cuellos de botella y procesos.</span></label><label class="opt" for="q27_o1"><input type="radio" name="q27" id="q27_o1" value="rojo"><span>Meter energía y levantar ánimo.</span></label><label class="opt" for="q27_o2"><input type="radio" name="q27" id="q27_o2" value="azul"><span>Asegurar estabilidad y evitar estrés del equipo.</span></label><label class="opt" for="q27_o3"><input type="radio" name="q27" id="q27_o3" value="amarillo"><span>Cambiar estrategia y apretar ejecución.</span></label></div></div><div class="q" id="q_28"><div class="qhead"><div class="qnum">29.</div><p class="qtitle">Cuando algo no sale perfecto, yo:</p></div><div class="opts"><label class="opt" for="q28_o0"><input type="radio" name="q28" id="q28_o0" value="amarillo"><span>Lo acepto si ya cumple la meta.</span></label><label class="opt" for="q28_o1"><input type="radio" name="q28" id="q28_o1" value="rojo"><span>Lo acepto si el impacto emocional fue bueno.</span></label><label class="opt" for="q28_o2"><input type="radio" name="q28" id="q28_o2" value="verde"><span>Me cuesta: quiero corregirlo.</span></label><label class="opt" for="q28_o3"><input type="radio" name="q28" id="q28_o3" value="azul"><span>Me inquieto y busco volver a estabilidad.</span></label></div></div><div class="q" id="q_29"><div class="qhead"><div class="qnum">30.</div><p class="qtitle">La frase que más se parece a mí es:</p></div><div class="opts"><label class="opt" for="q29_o0"><input type="radio" name="q29" id="q29_o0" value="verde"><span>“Primero lo hacemos bien, luego rápido.”</span></label><label class="opt" for="q29_o1"><input type="radio" name="q29" id="q29_o1" value="azul"><span>“Primero que sea seguro y estable.”</span></label><label class="opt" for="q29_o2"><input type="radio" name="q29" id="q29_o2" value="rojo"><span>“Necesito que esto tenga chispa.”</span></label><label class="opt" for="q29_o3"><input type="radio" name="q29" id="q29_o3" value="amarillo"><span>“Vamos a ganar tiempo y cerrar.”</span></label></div></div><div class="q" id="q_30"><div class="qhead"><div class="qnum">31.</div><p class="qtitle">Cuando alguien me interrumpe, yo:</p></div><div class="opts"><label class="opt" for="q30_o0"><input type="radio" name="q30" id="q30_o0" value="azul"><span>Me incomoda el choque y bajo el tono.</span></label><label class="opt" for="q30_o1"><input type="radio" name="q30" id="q30_o1" value="amarillo"><span>Me molesto si frena el avance.</span></label><label class="opt" for="q30_o2"><input type="radio" name="q30" id="q30_o2" value="verde"><span>Quiero terminar el punto con orden.</span></label><label class="opt" for="q30_o3"><input type="radio" name="q30" id="q30_o3" value="rojo"><span>Sigo el hilo con naturalidad (a veces me voy por ramas).</span></label></div></div><div class="q" id="q_31"><div class="qhead"><div class="qnum">32.</div><p class="qtitle">Si tengo que tomar una decisión importante, yo:</p></div><div class="opts"><label class="opt" for="q31_o0"><input type="radio" name="q31" id="q31_o0" value="rojo"><span>Me guío por intuición y emoción.</span></label><label class="opt" for="q31_o1"><input type="radio" name="q31" id="q31_o1" value="azul"><span>Me guío por seguridad y estabilidad.</span></label><label class="opt" for="q31_o2"><input type="radio" name="q31" id="q31_o2" value="verde"><span>Me guío por evidencia y análisis.</span></label><label class="opt" for="q31_o3"><input type="radio" name="q31" id="q31_o3" value="amarillo"><span>Me guío por el objetivo y el resultado.</span></label></div></div><div class="q" id="q_32"><div class="qhead"><div class="qnum">33.</div><p class="qtitle">Cuando trabajo solo/a, lo que más disfruto es:</p></div><div class="opts"><label class="opt" for="q32_o0"><input type="radio" name="q32" id="q32_o0" value="verde"><span>Concentración profunda y calidad.</span></label><label class="opt" for="q32_o1"><input type="radio" name="q32" id="q32_o1" value="azul"><span>Calma, estabilidad y orden.</span></label><label class="opt" for="q32_o2"><input type="radio" name="q32" id="q32_o2" value="rojo"><span>Libertad creativa y cambiar de ritmo.</span></label><label class="opt" for="q32_o3"><input type="radio" name="q32" id="q32_o3" value="amarillo"><span>Avanzar rápido sin frenos.</span></label></div></div><div class="q" id="q_33"><div class="qhead"><div class="qnum">34.</div><p class="qtitle">Cuando trabajo con otros, lo que más me importa es:</p></div><div class="opts"><label class="opt" for="q33_o0"><input type="radio" name="q33" id="q33_o0" value="verde"><span>Que haya claridad, roles y proceso.</span></label><label class="opt" for="q33_o1"><input type="radio" name="q33" id="q33_o1" value="rojo"><span>Ambiente agradable y conexión humana.</span></label><label class="opt" for="q33_o2"><input type="radio" name="q33" id="q33_o2" value="amarillo"><span>Que se cumpla y se ejecute.</span></label><label class="opt" for="q33_o3"><input type="radio" name="q33" id="q33_o3" value="azul"><span>Que haya respeto, cuidado y armonía.</span></label></div></div><div class="q" id="q_34"><div class="qhead"><div class="qnum">35.</div><p class="qtitle">Si me dan una fecha límite, yo:</p></div><div class="opts"><label class="opt" for="q34_o0"><input type="radio" name="q34" id="q34_o0" value="rojo"><span>La cumplo si lo hago divertido y con impulso.</span></label><label class="opt" for="q34_o1"><input type="radio" name="q34" id="q34_o1" value="amarillo"><span>La cumplo sí o sí: presión me activa.</span></label><label class="opt" for="q34_o2"><input type="radio" name="q34" id="q34_o2" value="verde"><span>La cumplo con plan y control de calidad.</span></label><label class="opt" for="q34_o3"><input type="radio" name="q34" id="q34_o3" value="azul"><span>La cumplo mejor si no hay caos alrededor.</span></label></div></div><div class="q" id="q_35"><div class="qhead"><div class="qnum">36.</div><p class="qtitle">Cuando hay mucha gente nueva, yo:</p></div><div class="opts"><label class="opt" for="q35_o0"><input type="radio" name="q35" id="q35_o0" value="amarillo"><span>Tomo liderazgo o busco ventaja.</span></label><label class="opt" for="q35_o1"><input type="radio" name="q35" id="q35_o1" value="rojo"><span>Socializo y me energizo.</span></label><label class="opt" for="q35_o2"><input type="radio" name="q35" id="q35_o2" value="azul"><span>Me adapto con cautela y busco confianza.</span></label><label class="opt" for="q35_o3"><input type="radio" name="q35" id="q35_o3" value="verde"><span>Observo y me ubico antes de hablar.</span></label></div></div><div class="q" id="q_36"><div class="qhead"><div class="qnum">37.</div><p class="qtitle">Mi relación con el orden suele ser:</p></div><div class="opts"><label class="opt" for="q36_o0"><input type="radio" name="q36" id="q36_o0" value="verde"><span>Es esencial: orden es paz mental.</span></label><label class="opt" for="q36_o1"><input type="radio" name="q36" id="q36_o1" value="rojo"><span>Lo intento… pero mi cabeza va más rápido.</span></label><label class="opt" for="q36_o2"><input type="radio" name="q36" id="q36_o2" value="amarillo"><span>Lo suficiente para ejecutar y ganar.</span></label><label class="opt" for="q36_o3"><input type="radio" name="q36" id="q36_o3" value="azul"><span>Me gusta el orden porque da estabilidad.</span></label></div></div><div class="q" id="q_37"><div class="qhead"><div class="qnum">38.</div><p class="qtitle">Cuando alguien no está de acuerdo conmigo, yo:</p></div><div class="opts"><label class="opt" for="q37_o0"><input type="radio" name="q37" id="q37_o0" value="azul"><span>Prefiero no escalar el conflicto.</span></label><label class="opt" for="q37_o1"><input type="radio" name="q37" id="q37_o1" value="amarillo"><span>Debato fuerte y defiendo mi postura.</span></label><label class="opt" for="q37_o2"><input type="radio" name="q37" id="q37_o2" value="rojo"><span>Intento convencerlo con empatía y buena vibra.</span></label><label class="opt" for="q37_o3"><input type="radio" name="q37" id="q37_o3" value="verde"><span>Pido argumentos y evidencia.</span></label></div></div><div class="q" id="q_38"><div class="qhead"><div class="qnum">39.</div><p class="qtitle">En general, me reconocen más por:</p></div><div class="opts"><label class="opt" for="q38_o0"><input type="radio" name="q38" id="q38_o0" value="rojo"><span>Carisma, humor y creatividad.</span></label><label class="opt" for="q38_o1"><input type="radio" name="q38" id="q38_o1" value="azul"><span>Calma, paciencia y apoyo.</span></label><label class="opt" for="q38_o2"><input type="radio" name="q38" id="q38_o2" value="amarillo"><span>Firmeza, liderazgo y resultados.</span></label><label class="opt" for="q38_o3"><input type="radio" name="q38" id="q38_o3" value="verde"><span>Precisión, lógica y calidad.</span></label></div></div><div class="q" id="q_39"><div class="qhead"><div class="qnum">40.</div><p class="qtitle">Cuando un proyecto termina, lo que más me importa es:</p></div><div class="opts"><label class="opt" for="q39_o0"><input type="radio" name="q39" id="q39_o0" value="verde"><span>Que haya quedado impecable y correcto.</span></label><label class="opt" for="q39_o1"><input type="radio" name="q39" id="q39_o1" value="azul"><span>Que haya dejado estabilidad y buen clima.</span></label><label class="opt" for="q39_o2"><input type="radio" name="q39" id="q39_o2" value="amarillo"><span>Que haya sido un éxito medible.</span></label><label class="opt" for="q39_o3"><input type="radio" name="q39" id="q39_o3" value="rojo"><span>Que haya sido una experiencia disfrutable.</span></label></div></div></div>
+
+      <div class="footerActions">
+        <button class="btn" id="btnResult" type="button">Ver resultados</button>
+      </div>
+      <div class="tiny">
+        Nota: este test busca un perfil predominante (no “etiquetarte”). Si hay empate, se mostrará como mezcla.
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <div class="resultHeader" id="resultHeader">
+        <div class="dominant">
+          <h2 id="resTitle">RESULTADO</h2>
+          <div class="tag" id="resTag">
+            <div class="swatch" id="resSwatch"></div>
+            <span id="resTagText">—</span>
+          </div>
+        </div>
+
+        <div class="resGrid">
+          <div>
+            <canvas id="pie" width="340" height="340" aria-label="Gráfica de pastel"></canvas>
+
+            <div class="bars" id="bars"></div>
+          </div>
+
+          <div class="detail" id="detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // -----------------------------
+    // CONFIG
+    // -----------------------------
+    const COLORS = {
+      rojo:     { label: "Rojo",     pastel: getCssVar("--rojo") },
+      amarillo: { label: "Amarillo", pastel: getCssVar("--amarillo") },
+      verde:    { label: "Verde",    pastel: getCssVar("--verde") },
+      azul:     { label: "Azul",     pastel: getCssVar("--azul") }
+    };
+
+    const RESULTADOS = {
+      rojo: {
+        titulo: "ERES ROJO",
+        caracteristicas: [
+          "Sociable, comunicativo/a, extrovertido/a y espontáneo/a; tu entusiasmo levanta el ánimo del equipo.",
+          "Alegre y optimista, sueles mantener buen humor incluso en entornos tensos.",
+          "A veces puedes ser disperso/a con detalles porque traes muchas ideas abiertas al mismo tiempo.",
+          "Creativo/a e inspirador/a: aportas energía, motivación e ideas frescas a los proyectos."
+        ],
+        material: "Hábitos atómicos (James Clear).",
+        practica: "Técnica Pomodoro: 25 min de enfoque + 5 min de descanso, para terminar una cosa antes de saltar a otra.",
+        miedo: "Pasar desapercibido/a, sentirte ignorado/a o que la rutina apague tu chispa.",
+        motivador: "Reconocimiento y conexión social: te mueve sentir que tus ideas importan y tu presencia suma.",
+        valor: "Catalizador de la moral: creatividad, optimismo y motivación. Empujas cuando otros se apagan.",
+        ambito: "Ventas, marketing, publicidad, relaciones públicas, creación de contenido y roles con interacción humana.",
+        nemesis: "Verde (orden vs improvisación).",
+        recomendacion: "Reconoce logros en público, deja espacio para ideas y acompaña con estructura simple y recordatorios.",
+        frase: "“Si no es divertido, no vale la pena.”"
+      },
+
+      amarillo: {
+        titulo: "ERES AMARILLO",
+        caracteristicas: [
+          "Seguro/a, enérgico/a y competitivo/a; tomas decisiones rápido y con determinación.",
+          "Directo/a y pragmático/a: vas al grano y a resultados, aunque a veces puedes sonar impaciente.",
+          "Valiente ante retos: no temes al cambio si te acerca a la meta.",
+          "Dotes naturales de mando: tomas la iniciativa y empujas al grupo hacia objetivos ambiciosos."
+        ],
+        material: "Cómo ganar amigos e influir sobre las personas (Dale Carnegie).",
+        practica: "Escucha activa: deja que otros hablen primero y resume su punto antes de dar tu opinión.",
+        miedo: "Perder el control o fracasar; verte vulnerable o depender de otros.",
+        motivador: "Logro y control: resultados tangibles, velocidad, metas cumplidas.",
+        valor: "Acelerador del equipo: decisión, coraje y enfoque en objetivos. Sacas proyectos del pantano.",
+        ambito: "Dirección, liderazgo, gestión estratégica, emprendimiento, ventas de cierre, negociación.",
+        nemesis: "Azul (ritmo rápido vs ritmo cuidadoso).",
+        recomendacion: "Sé concreto, usa hechos y acuerdos claros. No te tomes su estilo directo como algo personal.",
+        frase: "“No vine a hacer amigos, vine a ganar.”"
+      },
+
+      verde: {
+        titulo: "ERES VERDE",
+        caracteristicas: [
+          "Analítico/a, objetivo/a y perfeccionista; prefieres entender a fondo antes de actuar.",
+          "Metódico/a y organizado/a: cuidas detalles y mantienes estándares altos.",
+          "Reservado/a y formal: puedes parecer distante, pero estás procesando con lógica.",
+          "Te cuesta tolerar caos y cambios bruscos; eres autocrítico/a y buscas exactitud."
+        ],
+        material: "¿Quién se ha llevado mi queso? (Spencer Johnson).",
+        practica: "Entrena flexibilidad: entrega algo “suficientemente bueno” al 90% en un proyecto pequeño.",
+        miedo: "Equivocarte o pasar por alto un detalle importante; falta de orden y sensación de incompetencia.",
+        motivador: "Reglas, procesos, precisión y excelencia técnica. Te motiva hacer las cosas bien, no rápido.",
+        valor: "Filtro de calidad: rigor, planificación y pensamiento crítico. Previenes errores costosos.",
+        ambito: "Finanzas, ingeniería, datos, control de calidad, auditoría, gestión de proyectos complejos.",
+        nemesis: "Rojo (estructura vs improvisación).",
+        recomendacion: "Llega con datos claros, instrucciones específicas y tiempos realistas. Respeta procesos y orden.",
+        frase: "“La perfección no existe… pero la busco con lupa.”"
+      },
+
+      azul: {
+        titulo: "ERES AZUL",
+        caracteristicas: [
+          "Sensible, metódico/a y buen oyente; buscas armonía y estabilidad emocional.",
+          "Prefieres estructura y procedimientos claros: te da paz saber qué sigue y cómo se hace.",
+          "Ritmo cuidadoso: analizas riesgos antes de moverte y sueles procesar internamente.",
+          "Cortés y educado/a; evitas el conflicto y los cambios bruscos."
+        ],
+        material: "Tus zonas erróneas (Wayne Dyer) y El alma del liderazgo (Deepak Chopra).",
+        practica: "Micro-cambios controlados: una variación pequeña por semana para entrenar tolerancia al cambio.",
+        miedo: "Cambios bruscos, incertidumbre y confrontación.",
+        motivador: "Seguridad, estabilidad y continuidad. Te motiva sostener lo que funciona.",
+        valor: "Guardían de la continuidad: soporte, administración, servicio, seguimiento y orden operativo.",
+        ambito: "Atención a cliente, soporte, administración, coordinación, servicio y roles de seguimiento.",
+        nemesis: "Amarillo (urgencia vs cautela).",
+        recomendacion: "Habla con calma, da contexto y pasos claros. Evita presionar con urgencia agresiva.",
+        frase: "“Si todo está estable, todo está bien.”"
+      }
+    };
+
+    // 40 preguntas: 4 opciones cada una, una por perfil, sin mencionar colores.
+    const QUESTIONS = [
+      {
+        p: "Cuando tengo un objetivo importante, me enfoco en:",
+        c: [
+          { t: "Que sea ameno y contagiar entusiasmo al equipo.", k: "rojo" },
+          { t: "Resultados tangibles y control de la situación.", k: "amarillo" },
+          { t: "Precisión, método y hacerlo impecable.", k: "verde" },
+          { t: "Estabilidad, claridad y que todo sea predecible.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando hay presión, mi reacción más común es:",
+        c: [
+          { t: "Aligerar el ambiente y mantener el ánimo arriba.", k: "rojo" },
+          { t: "Acelerar decisiones y empujar para cerrar.", k: "amarillo" },
+          { t: "Revisar datos, detectar errores y ordenar pasos.", k: "verde" },
+          { t: "Buscar calma, bajar tensión y cuidar el clima.", k: "azul" }
+        ]
+      },
+      {
+        p: "En una conversación difícil, suelo:",
+        c: [
+          { t: "Usar humor y empatía para que fluya.", k: "rojo" },
+          { t: "Decirlo directo y resolver rápido.", k: "amarillo" },
+          { t: "Pedir precisión y sustento antes de concluir.", k: "verde" },
+          { t: "Medir palabras, escuchar y evitar choque.", k: "azul" }
+        ]
+      },
+      {
+        p: "Lo que más valoro de un plan es que sea:",
+        c: [
+          { t: "Inspirador y con espacio para improvisar.", k: "rojo" },
+          { t: "Rápido, efectivo y orientado a ganar.", k: "amarillo" },
+          { t: "Detallado, lógico y con riesgos previstos.", k: "verde" },
+          { t: "Estable, claro y sin sobresaltos.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si alguien me da retroalimentación, prefiero que sea:",
+        c: [
+          { t: "Amable, motivadora y con buena vibra.", k: "rojo" },
+          { t: "Concreta, directa y al punto.", k: "amarillo" },
+          { t: "Específica, basada en hechos y ejemplos.", k: "verde" },
+          { t: "Cuidadosa, respetuosa y en privado.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando empiezo algo nuevo, lo que más me impulsa es:",
+        c: [
+          { t: "La emoción, la novedad y compartirlo.", k: "rojo" },
+          { t: "El reto, la meta y el logro.", k: "amarillo" },
+          { t: "Entenderlo a fondo y dominarlo.", k: "verde" },
+          { t: "Sentirme seguro/a y con respaldo.", k: "azul" }
+        ]
+      },
+      {
+        p: "En equipo, tiendo a aportar más con:",
+        c: [
+          { t: "Ideas, energía y conexión entre personas.", k: "rojo" },
+          { t: "Dirección, decisión y sentido de urgencia.", k: "amarillo" },
+          { t: "Estructura, calidad y prevención de errores.", k: "verde" },
+          { t: "Constancia, seguimiento y equilibrio emocional.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si algo sale mal, mi prioridad suele ser:",
+        c: [
+          { t: "Que la gente no se desanime.", k: "rojo" },
+          { t: "Reaccionar y corregir YA.", k: "amarillo" },
+          { t: "Encontrar la causa exacta y ajustar el sistema.", k: "verde" },
+          { t: "Reducir el impacto y volver a un estado estable.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando hay reglas, normalmente yo:",
+        c: [
+          { t: "Las sigo si no matan el flow.", k: "rojo" },
+          { t: "Las uso si ayudan a ganar; si no, las cuestiono.", k: "amarillo" },
+          { t: "Las respeto y las optimizo con disciplina.", k: "verde" },
+          { t: "Las agradezco porque dan certeza.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si me dan una tarea, lo que más me ayuda es:",
+        c: [
+          { t: "Libertad creativa y un ambiente ligero.", k: "rojo" },
+          { t: "Objetivo claro y autoridad para ejecutar.", k: "amarillo" },
+          { t: "Instrucciones precisas, tiempos y criterios.", k: "verde" },
+          { t: "Acompañamiento, contexto y estabilidad.", k: "azul" }
+        ]
+      },
+
+      {
+        p: "Si una junta se alarga, yo empiezo a:",
+        c: [
+          { t: "Contar anécdotas o meter dinamismo.", k: "rojo" },
+          { t: "Cortar y exigir decisión.", k: "amarillo" },
+          { t: "Pedir agenda, orden y acuerdos por escrito.", k: "verde" },
+          { t: "Escuchar, pero me canso si hay conflicto.", k: "azul" }
+        ]
+      },
+      {
+        p: "Ante un cambio inesperado, mi primer impulso es:",
+        c: [
+          { t: "Ver el lado divertido y adaptarme con energía.", k: "rojo" },
+          { t: "Tomar control y convertirlo en ventaja.", k: "amarillo" },
+          { t: "Evaluar riesgos y reordenar el proceso.", k: "verde" },
+          { t: "Buscar estabilidad y tiempo para procesarlo.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando alguien me pide algo “rápido”, normalmente:",
+        c: [
+          { t: "Digo que sí, aunque luego improvise.", k: "rojo" },
+          { t: "Lo hago al instante y sigo con lo siguiente.", k: "amarillo" },
+          { t: "Pregunto detalles antes de comprometerme.", k: "verde" },
+          { t: "Me estreso si no está claro y necesito calma.", k: "azul" }
+        ]
+      },
+      {
+        p: "En una negociación, suelo:",
+        c: [
+          { t: "Conectar y persuadir con carisma.", k: "rojo" },
+          { t: "Apretar por el mejor resultado.", k: "amarillo" },
+          { t: "Sostenerme en datos y términos claros.", k: "verde" },
+          { t: "Buscar acuerdos justos y sin tensión.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando algo se vuelve rutinario, yo:",
+        c: [
+          { t: "Me aburro y necesito variedad.", k: "rojo" },
+          { t: "Lo automatizo o lo delego para avanzar.", k: "amarillo" },
+          { t: "Lo perfecciono y lo vuelvo sistema.", k: "verde" },
+          { t: "Me siento tranquilo/a: estabilidad es buena.", k: "azul" }
+        ]
+      },
+      {
+        p: "Mi forma natural de aprender es:",
+        c: [
+          { t: "Probando, hablando y moviéndome.", k: "rojo" },
+          { t: "Yendo al grano y practicando para dominar rápido.", k: "amarillo" },
+          { t: "Estudiando a fondo, paso por paso.", k: "verde" },
+          { t: "Con calma, repetición y un entorno seguro.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando alguien es muy lento para decidir, yo:",
+        c: [
+          { t: "Lo animo y le doy confianza.", k: "rojo" },
+          { t: "Me impaciento y empujo a decidir.", k: "amarillo" },
+          { t: "Entiendo si está analizando, pero pido orden.", k: "verde" },
+          { t: "Lo comprendo: decidir bien toma tiempo.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando alguien es muy impulsivo, yo:",
+        c: [
+          { t: "Me río, pero intento bajarlo a tierra.", k: "rojo" },
+          { t: "Lo uso como energía para avanzar.", k: "amarillo" },
+          { t: "Lo freno con datos, proceso y cautela.", k: "verde" },
+          { t: "Me incomoda y prefiero distancia.", k: "azul" }
+        ]
+      },
+      {
+        p: "En un conflicto, mi tendencia es:",
+        c: [
+          { t: "Evitar tensión con humor y cercanía.", k: "rojo" },
+          { t: "Enfrentar y resolver rápido.", k: "amarillo" },
+          { t: "Analizar quién tiene razón con evidencia.", k: "verde" },
+          { t: "Evitar confrontación y buscar paz.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si tengo que liderar, normalmente lidero con:",
+        c: [
+          { t: "Energía, motivación y convivencia.", k: "rojo" },
+          { t: "Dirección, decisión y presión por metas.", k: "amarillo" },
+          { t: "Procesos, calidad y planificación.", k: "verde" },
+          { t: "Cuidado, armonía y estabilidad.", k: "azul" }
+        ]
+      },
+
+      {
+        p: "Cuando alguien me pide “instrucciones”, suelo:",
+        c: [
+          { t: "Explicar con ejemplos y anécdotas.", k: "rojo" },
+          { t: "Dar pasos concretos y ya.", k: "amarillo" },
+          { t: "Detallar, documentar y verificar comprensión.", k: "verde" },
+          { t: "Acompañar con paciencia y tranquilidad.", k: "azul" }
+        ]
+      },
+      {
+        p: "Para mí, un día productivo se siente como:",
+        c: [
+          { t: "Me divertí, conecté y avancé algo.", k: "rojo" },
+          { t: "Logré metas y gané terreno.", k: "amarillo" },
+          { t: "Todo quedó bien hecho y sin errores.", k: "verde" },
+          { t: "Fue estable, sin estrés y con orden.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando se trata de detalles, yo:",
+        c: [
+          { t: "Me fijo en lo general y en la vibra.", k: "rojo" },
+          { t: "Me fijo en lo que impacta el resultado.", k: "amarillo" },
+          { t: "Me fijo en todo: precisión y consistencia.", k: "verde" },
+          { t: "Me fijo en que sea claro y cómodo.", k: "azul" }
+        ]
+      },
+      {
+        p: "En una presentación, mi estilo natural es:",
+        c: [
+          { t: "Expresivo, divertido y con storytelling.", k: "rojo" },
+          { t: "Directo, convincente y con cierre fuerte.", k: "amarillo" },
+          { t: "Ordenado, técnico y con sustento.", k: "verde" },
+          { t: "Tranquilo, cuidadoso y empático.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando tengo muchas ideas, lo que más me cuesta es:",
+        c: [
+          { t: "Elegir solo una y terminarla.", k: "rojo" },
+          { t: "Esperar: quiero resultados ya.", k: "amarillo" },
+          { t: "Soltar el control y aceptar imperfección.", k: "verde" },
+          { t: "Moverme rápido con cambios.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si alguien no está comprometido, yo:",
+        c: [
+          { t: "Lo motivo y trato de inspirarlo.", k: "rojo" },
+          { t: "Lo confronto y exijo desempeño.", k: "amarillo" },
+          { t: "Documentaría fallas y ajustaría el proceso.", k: "verde" },
+          { t: "Busco dialogar sin tensión y entender.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando se trata de riesgos, normalmente:",
+        c: [
+          { t: "Me aviento si suena emocionante.", k: "rojo" },
+          { t: "Me aviento si aumenta la probabilidad de ganar.", k: "amarillo" },
+          { t: "Evalúo riesgos antes: no apuesto a ciegas.", k: "verde" },
+          { t: "Prefiero lo seguro: me pesa la incertidumbre.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si un proyecto va lento, lo más típico en mí es:",
+        c: [
+          { t: "Meter energía y levantar ánimo.", k: "rojo" },
+          { t: "Cambiar estrategia y apretar ejecución.", k: "amarillo" },
+          { t: "Revisar cuellos de botella y procesos.", k: "verde" },
+          { t: "Asegurar estabilidad y evitar estrés del equipo.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando algo no sale perfecto, yo:",
+        c: [
+          { t: "Lo acepto si el impacto emocional fue bueno.", k: "rojo" },
+          { t: "Lo acepto si ya cumple la meta.", k: "amarillo" },
+          { t: "Me cuesta: quiero corregirlo.", k: "verde" },
+          { t: "Me inquieto y busco volver a estabilidad.", k: "azul" }
+        ]
+      },
+      {
+        p: "La frase que más se parece a mí es:",
+        c: [
+          { t: "“Necesito que esto tenga chispa.”", k: "rojo" },
+          { t: "“Vamos a ganar tiempo y cerrar.”", k: "amarillo" },
+          { t: "“Primero lo hacemos bien, luego rápido.”", k: "verde" },
+          { t: "“Primero que sea seguro y estable.”", k: "azul" }
+        ]
+      },
+
+      {
+        p: "Cuando alguien me interrumpe, yo:",
+        c: [
+          { t: "Sigo el hilo con naturalidad (a veces me voy por ramas).", k: "rojo" },
+          { t: "Me molesto si frena el avance.", k: "amarillo" },
+          { t: "Quiero terminar el punto con orden.", k: "verde" },
+          { t: "Me incomoda el choque y bajo el tono.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si tengo que tomar una decisión importante, yo:",
+        c: [
+          { t: "Me guío por intuición y emoción.", k: "rojo" },
+          { t: "Me guío por el objetivo y el resultado.", k: "amarillo" },
+          { t: "Me guío por evidencia y análisis.", k: "verde" },
+          { t: "Me guío por seguridad y estabilidad.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando trabajo solo/a, lo que más disfruto es:",
+        c: [
+          { t: "Libertad creativa y cambiar de ritmo.", k: "rojo" },
+          { t: "Avanzar rápido sin frenos.", k: "amarillo" },
+          { t: "Concentración profunda y calidad.", k: "verde" },
+          { t: "Calma, estabilidad y orden.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando trabajo con otros, lo que más me importa es:",
+        c: [
+          { t: "Ambiente agradable y conexión humana.", k: "rojo" },
+          { t: "Que se cumpla y se ejecute.", k: "amarillo" },
+          { t: "Que haya claridad, roles y proceso.", k: "verde" },
+          { t: "Que haya respeto, cuidado y armonía.", k: "azul" }
+        ]
+      },
+      {
+        p: "Si me dan una fecha límite, yo:",
+        c: [
+          { t: "La cumplo si lo hago divertido y con impulso.", k: "rojo" },
+          { t: "La cumplo sí o sí: presión me activa.", k: "amarillo" },
+          { t: "La cumplo con plan y control de calidad.", k: "verde" },
+          { t: "La cumplo mejor si no hay caos alrededor.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando hay mucha gente nueva, yo:",
+        c: [
+          { t: "Socializo y me energizo.", k: "rojo" },
+          { t: "Tomo liderazgo o busco ventaja.", k: "amarillo" },
+          { t: "Observo y me ubico antes de hablar.", k: "verde" },
+          { t: "Me adapto con cautela y busco confianza.", k: "azul" }
+        ]
+      },
+      {
+        p: "Mi relación con el orden suele ser:",
+        c: [
+          { t: "Lo intento… pero mi cabeza va más rápido.", k: "rojo" },
+          { t: "Lo suficiente para ejecutar y ganar.", k: "amarillo" },
+          { t: "Es esencial: orden es paz mental.", k: "verde" },
+          { t: "Me gusta el orden porque da estabilidad.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando alguien no está de acuerdo conmigo, yo:",
+        c: [
+          { t: "Intento convencerlo con empatía y buena vibra.", k: "rojo" },
+          { t: "Debato fuerte y defiendo mi postura.", k: "amarillo" },
+          { t: "Pido argumentos y evidencia.", k: "verde" },
+          { t: "Prefiero no escalar el conflicto.", k: "azul" }
+        ]
+      },
+      {
+        p: "En general, me reconocen más por:",
+        c: [
+          { t: "Carisma, humor y creatividad.", k: "rojo" },
+          { t: "Firmeza, liderazgo y resultados.", k: "amarillo" },
+          { t: "Precisión, lógica y calidad.", k: "verde" },
+          { t: "Calma, paciencia y apoyo.", k: "azul" }
+        ]
+      },
+      {
+        p: "Cuando un proyecto termina, lo que más me importa es:",
+        c: [
+          { t: "Que haya sido una experiencia disfrutable.", k: "rojo" },
+          { t: "Que haya sido un éxito medible.", k: "amarillo" },
+          { t: "Que haya quedado impecable y correcto.", k: "verde" },
+          { t: "Que haya dejado estabilidad y buen clima.", k: "azul" }
+        ]
+      }
+    ];
+
+    // -----------------------------
+    // RENDER
+    // -----------------------------
+    const $questions = document.getElementById("questions");
+    const $progressPill = document.getElementById("progressPill");
+    const $btnResult = document.getElementById("btnResult");
+    const $btnReset = document.getElementById("btnReset");
+
+    const $results = document.getElementById("results");
+    const $resTitle = document.getElementById("resTitle");
+    const $resTagText = document.getElementById("resTagText");
+    const $resSwatch = document.getElementById("resSwatch");
+    const $detail = document.getElementById("detail");
+    const $bars = document.getElementById("bars");
+    const $pie = document.getElementById("pie");
+
+    const shuffledChoicesByQ = []; // para mantener el orden de opciones ya mezcladas
+
+    function init(){
+      renderQuestions();
+      attachProgressListeners();
+      updateProgress();
+      $btnResult.addEventListener("click", onResult);
+      $btnReset.addEventListener("click", () => {
+        if(!confirm("¿Reiniciar todas tus respuestas?")) return;
+        document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        document.querySelectorAll(".q").forEach(q => q.classList.remove("missing"));
+        $results.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        updateProgress();
+      });
+    }
+
+    function renderQuestions(){
+      $questions.innerHTML = "";
+      shuffledChoicesByQ.length = 0;
+
+      QUESTIONS.forEach((q, idx) => {
+        const qBox = document.createElement("div");
+        qBox.className = "q";
+        qBox.id = `q_${idx}`;
+
+        const head = document.createElement("div");
+        head.className = "qhead";
+
+        const num = document.createElement("div");
+        num.className = "qnum";
+        num.textContent = (idx+1) + ".";
+
+        const title = document.createElement("p");
+        title.className = "qtitle";
+        title.textContent = q.p;
+
+        head.appendChild(num);
+        head.appendChild(title);
+
+        const opts = document.createElement("div");
+        opts.className = "opts";
+
+        // Mezcla opciones para que no se asocie una letra a un perfil
+        const choices = shuffle([...q.c]);
+        shuffledChoicesByQ[idx] = choices;
+
+        choices.forEach((choice, cIdx) => {
+          const id = `q${idx}_o${cIdx}`;
+          const label = document.createElement("label");
+          label.className = "opt";
+          label.setAttribute("for", id);
+
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = `q${idx}`;
+          radio.id = id;
+          radio.value = choice.k;
+
+          const text = document.createElement("span");
+          text.textContent = choice.t;
+
+          label.appendChild(radio);
+          label.appendChild(text);
+          opts.appendChild(label);
+        });
+
+        qBox.appendChild(head);
+        qBox.appendChild(opts);
+        $questions.appendChild(qBox);
+      });
+    }
+
+    function attachProgressListeners(){
+      $questions.addEventListener("change", (e) => {
+        if(e.target && e.target.matches('input[type="radio"]')){
+          const qIndex = parseInt(e.target.name.replace("q",""), 10);
+          const qBox = document.getElementById(`q_${qIndex}`);
+          if(qBox) qBox.classList.remove("missing");
+          updateProgress();
+        }
+      });
+    }
+
+    function updateProgress(){
+      const answered = countAnswered();
+      $progressPill.textContent = `Progreso: ${answered} / ${QUESTIONS.length}`;
+    }
+
+    function countAnswered(){
+      let n = 0;
+      for(let i=0;i<QUESTIONS.length;i++){
+        const checked = document.querySelector(`input[name="q${i}"]:checked`);
+        if(checked) n++;
+      }
+      return n;
+    }
+
+    // -----------------------------
+    // RESULTADOS
+    // -----------------------------
+    function onResult(){
+      const missing = [];
+      for(let i=0;i<QUESTIONS.length;i++){
+        const checked = document.querySelector(`input[name="q${i}"]:checked`);
+        if(!checked) missing.push(i);
+      }
+
+      document.querySelectorAll(".q").forEach(q => q.classList.remove("missing"));
+      if(missing.length){
+        missing.forEach(i => document.getElementById(`q_${i}`).classList.add("missing"));
+        alert(`Te faltan ${missing.length} preguntas por contestar. (Están marcadas en rojo.)`);
+        document.getElementById(`q_${missing[0]}`).scrollIntoView({ behavior:"smooth", block:"center" });
+        return;
+      }
+
+      const scores = { rojo:0, amarillo:0, verde:0, azul:0 };
+      for(let i=0;i<QUESTIONS.length;i++){
+        const k = document.querySelector(`input[name="q${i}"]:checked`).value;
+        scores[k] += 1;
+      }
+
+      const total = QUESTIONS.length;
+      const pct = {
+        rojo: round1((scores.rojo/total)*100),
+        amarillo: round1((scores.amarillo/total)*100),
+        verde: round1((scores.verde/total)*100),
+        azul: round1((scores.azul/total)*100)
+      };
+
+      const maxScore = Math.max(scores.rojo, scores.amarillo, scores.verde, scores.azul);
+      const top = Object.keys(scores).filter(k => scores[k] === maxScore);
+
+      showResults(scores, pct, top);
+
+      $results.style.display = "block";
+      $results.scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+
+    function showResults(scores, pct, topKeys){
+      // Encabezado
+      if(topKeys.length === 1){
+        const k = topKeys[0];
+        const meta = COLORS[k];
+        $resTitle.textContent = "RESULTADO";
+        $resTagText.textContent = `${RESULTADOS[k].titulo} (Pastel: ${meta.pastel})`;
+        $resSwatch.style.background = meta.pastel;
+
+        renderDetailSingle(k);
+      } else {
+        // Empate
+        const names = topKeys.map(k => COLORS[k].label).join(" + ");
+        $resTitle.textContent = "RESULTADO";
+        $resTagText.textContent = `MEZCLA: ${names} (empate)`;
+        $resSwatch.style.background = "rgba(255,255,255,.25)";
+        renderDetailTie(topKeys);
+      }
+
+      // Barras
+      renderBars(pct);
+
+      // Pastel
+      drawPie($pie, [
+        { k:"rojo",     v:pct.rojo,     color:COLORS.rojo.pastel,     label:"Rojo" },
+        { k:"amarillo", v:pct.amarillo, color:COLORS.amarillo.pastel, label:"Amarillo" },
+        { k:"verde",    v:pct.verde,    color:COLORS.verde.pastel,    label:"Verde" },
+        { k:"azul",     v:pct.azul,     color:COLORS.azul.pastel,     label:"Azul" }
+      ]);
+    }
+
+    function renderDetailSingle(k){
+      const r = RESULTADOS[k];
+      const meta = COLORS[k];
+
+      $detail.innerHTML = `
+        <h3 style="margin-top:0;">${r.titulo}</h3>
+        <div class="pill" style="margin-bottom:10px;">
+          <span class="swatch" style="background:${meta.pastel}"></span>
+          <span>Color predominante</span>
+        </div>
+
+        <h3>Características de personalidad</h3>
+        <ul>${r.caracteristicas.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
+
+        <p><b>Material recomendado:</b> ${escapeHtml(r.material)}</p>
+        <p><b>Práctica:</b> ${escapeHtml(r.practica)}</p>
+        <p><b>Miedo básico:</b> ${escapeHtml(r.miedo)}</p>
+        <p><b>Motivador:</b> ${escapeHtml(r.motivador)}</p>
+        <p><b>Valor para la organización:</b> ${escapeHtml(r.valor)}</p>
+        <p><b>Ámbito laboral sugerido:</b> ${escapeHtml(r.ambito)}</p>
+        <p><b>Color némesis:</b> ${escapeHtml(r.nemesis)}</p>
+        <p><b>Recomendación:</b> ${escapeHtml(r.recomendacion)}</p>
+        <p><b>Frase final:</b> ${escapeHtml(r.frase)}</p>
+      `;
+    }
+
+    function renderDetailTie(keys){
+      $detail.innerHTML = `
+        <h3 style="margin-top:0;">Empate (mezcla)</h3>
+        <p class="muted">
+          Tu puntuación quedó empatada entre: <b>${keys.map(k => COLORS[k].label).join(" + ")}</b>.
+          Esto suele indicar que te mueves entre estilos según el contexto.
+        </p>
+        <div style="display:grid; gap:12px; margin-top:10px;">
+          ${keys.map(k => tieCard(k)).join("")}
+        </div>
+        <p class="muted" style="margin-top:10px;">
+          Tip práctico: si quieres un “predominante” único, piensa cuál estilo usas cuando estás bajo presión o con poco tiempo.
+        </p>
+      `;
+    }
+
+    function tieCard(k){
+      const r = RESULTADOS[k];
+      const meta = COLORS[k];
+      return `
+        <div class="q" style="margin:0;">
+          <div class="qhead" style="margin-bottom:6px;">
+            <div class="qnum">
+              <span class="swatch" style="display:inline-block;background:${meta.pastel}; width:16px; height:16px; border-radius:6px;"></span>
+            </div>
+            <p class="qtitle" style="margin:0;"><b>${escapeHtml(r.titulo)}</b></p>
+          </div>
+          <ul style="margin: 6px 0 0 18px;">
+            ${r.caracteristicas.slice(0,3).map(x => `<li>${escapeHtml(x)}</li>`).join("")}
+          </ul>
+          <p class="muted" style="margin:8px 0 0;">Frase: ${escapeHtml(r.frase)}</p>
+        </div>
+      `;
+    }
+
+    function renderBars(pct){
+      const rows = [
+        { k:"rojo",     label:"Rojo",     v:pct.rojo,     color:COLORS.rojo.pastel },
+        { k:"amarillo", label:"Amarillo", v:pct.amarillo, color:COLORS.amarillo.pastel },
+        { k:"verde",    label:"Verde",    v:pct.verde,    color:COLORS.verde.pastel },
+        { k:"azul",     label:"Azul",     v:pct.azul,     color:COLORS.azul.pastel }
+      ].sort((a,b)=> b.v - a.v);
+
+      $bars.innerHTML = rows.map(r => `
+        <div class="barRow">
+          <div><b style="color:#eaf1ff;">${r.label}</b></div>
+          <div class="bar"><div style="width:${r.v}%; background:${r.color};"></div></div>
+          <div style="text-align:right;color:#eaf1ff;"><b>${r.v}%</b></div>
+        </div>
+      `).join("");
+    }
+
+    function drawPie(canvas, slices){
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width, H = canvas.height;
+      ctx.clearRect(0,0,W,H);
+
+      const cx = W/2, cy = H/2;
+      const r = Math.min(W,H)*0.36;
+
+      const total = slices.reduce((a,s)=>a+s.v,0) || 1;
+      let start = -Math.PI/2;
+
+      // fondo suave
+      ctx.fillStyle = "rgba(255,255,255,.03)";
+      ctx.beginPath();
+      ctx.arc(cx, cy, r+22, 0, Math.PI*2);
+      ctx.fill();
+
+      // rebanadas
+      slices.forEach(s => {
+        const angle = (s.v/total) * (Math.PI*2);
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.arc(cx,cy,r,start,start+angle);
+        ctx.closePath();
+        ctx.fillStyle = s.color;
+        ctx.fill();
+
+        // separación
+        ctx.strokeStyle = "rgba(0,0,0,.18)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        start += angle;
+      });
+
+      // centro (donut style)
+      ctx.beginPath();
+      ctx.arc(cx,cy,r*0.55,0,Math.PI*2);
+      ctx.fillStyle = "rgba(10,14,20,.75)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,.10)";
+      ctx.stroke();
+
+      // texto centro
+      ctx.fillStyle = "rgba(255,255,255,.9)";
+      ctx.font = "700 14px system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("Porcentajes", cx, cy-2);
+      ctx.font = "12px system-ui, sans-serif";
+      ctx.fillStyle = "rgba(255,255,255,.75)";
+      ctx.fillText("(40 puntos)", cx, cy+16);
+
+      // mini-leyenda
+      const lx = 18, ly = 20;
+      ctx.textAlign = "left";
+      ctx.font = "12px system-ui, sans-serif";
+      slices.forEach((s, i) => {
+        const y = ly + i*18;
+        ctx.fillStyle = s.color;
+        ctx.fillRect(lx, y, 12, 12);
+        ctx.strokeStyle = "rgba(0,0,0,.2)";
+        ctx.strokeRect(lx, y, 12, 12);
+        ctx.fillStyle = "rgba(255,255,255,.85)";
+        ctx.fillText(`${s.label}: ${s.v}%`, lx+18, y+11);
+      });
+    }
+
+    // -----------------------------
+    // HELPERS
+    // -----------------------------
+    function shuffle(arr){
+      for(let i=arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]] = [arr[j],arr[i]];
+      }
+      return arr;
+    }
+    function round1(n){ return Math.round(n*10)/10; }
+    function getCssVar(name){
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+    function escapeHtml(s){
+      return String(s)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    init();
+  </script>
+
+
+</body></html>
